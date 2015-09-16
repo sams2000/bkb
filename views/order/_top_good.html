@@ -1,0 +1,7 @@
+<% if (order.top) { %>
+<span class='put_top'>置顶</span>
+<% } else if (order.good) { %>
+<span class='put_good'>精华</span>
+<% } else if (typeof(tab) !== 'undefined' &&  tab === 'all' && order.tabName) { %>
+<span class="orderlist-tab"><%= order.tabName %></span>
+<% } %>

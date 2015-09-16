@@ -1,0 +1,39 @@
+<div class='cell'>
+
+  <a class="user_avatar pull-left" href="/user/<%= user.author.loginname %>">
+    <img src="<%= proxy(user.author.avatar_url) %>"
+         title="<%= user.author.loginname %>"
+            />
+  </a>
+
+  <span class="reply_count pull-left">
+    <span class="count_of_replies" title="回复数">
+      <%= user.reply_count %>
+    </span>
+    <span class="count_seperator">/</span>
+    <span class="count_of_visits" title='点击数'>
+      <%= user.visit_count %>
+    </span>
+  </span>
+
+  <% if (user.reply && user.reply.author) {%>
+  <a class='last_time pull-right' href="/user/<%= user._id %><%- '#' + user.reply._id %>">
+    <img class="user_small_avatar" src="<%= proxy(user.reply.author.avatar_url) %>">
+    <span class="last_active_time"><%= user.reply.create_at_ago() %></span>
+  </a>
+  <% } %>
+  <% if (!user.reply) {%>
+    <span class='last_time pull-right'>
+      <span class="last_active_time"><%= user.create_at_ago() %></span>
+    </span>
+  <% } %>
+
+  <div class="topic_title_wrapper">
+
+    <%- partial('./_top_good', {user: user}) %>
+
+    <a class='user_title' href='/user/<%= user._id %>' title='<%= user.title %>'>
+      <%= user.title %>
+    </a>
+  </div>
+</div>
